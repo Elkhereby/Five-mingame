@@ -1,5 +1,6 @@
 import os
 import random
+from main import main_menu
 
 LEADERBOARD_FILE = "guess_number_leaderboard.txt"
 
@@ -69,4 +70,14 @@ def play_Number_Guessing_Game():
         print(f"Sorry, you lost! The correct number was {random_number}.")
         print("Your score = 0")
         update_leaderboard(player_name, score, leaderboard)
+        
+print("1) try again")
+print("2) return to main menu")
+operation = input("Choice : ")
+match operation:
+    case "1" | "try again":
+        play_Number_Guessing_Game()
+    case "2" | "return to main menu":
+        main_menu()
+    
         
