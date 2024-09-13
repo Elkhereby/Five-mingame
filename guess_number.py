@@ -71,13 +71,3 @@ def play_Number_Guessing_Game():
         print("Your score = 0")
         update_leaderboard(player_name, score, leaderboard)
         
-print("1) try again")
-print("2) return to main menu")
-operation = input("Choice : ")
-match operation:
-    case "1" | "try again":
-        play_Number_Guessing_Game()
-    case "2" | "return to main menu":
-        main_menu()
-    
-        
