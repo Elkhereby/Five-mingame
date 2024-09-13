@@ -1,6 +1,5 @@
 import os
 import random
-from main import main_menu
 
 LEADERBOARD_FILE = "guess_number_leaderboard.txt"
 

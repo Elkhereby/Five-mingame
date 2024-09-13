@@ -39,12 +39,12 @@ def game_selection(op):
             return False
     return True
 
-def main_menu():
-    while True:
-        display_welcome_message()
-        display_menu()
-        operation = input("Select a game from (1-5) or (6) for exit: ")
-        user_input = operation.replace(" ", "").lower()
 
-        if game_selection(user_input):
-            break
+while True:
+    display_welcome_message()
+    display_menu()
+    operation = input("Select a game from (1-5) or (6) for exit: ")
+    user_input = operation.replace(" ", "").lower()
+
+    if game_selection(user_input):
+        break
