@@ -48,3 +48,5 @@ def main_menu():
 
         if game_selection(user_input):
             break
+
+main_menu()
