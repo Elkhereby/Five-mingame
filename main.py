@@ -1,5 +1,5 @@
 import sys
-
+from hangMan import*
 # Menu options
 menu_options = ["Quiz Game", "Hangman", "Tic-Tac-Toe", "Number Guessing Game", "Word Scramble", "Exit"]
 
@@ -23,6 +23,7 @@ def game_selection(op):
         case "1" | "quizgame":
             pass
         case "2" | "hangman":
+            hangMan_game()
             pass
         case "3" | "tictactoe":
             pass
