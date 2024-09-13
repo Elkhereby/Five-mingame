@@ -1,4 +1,5 @@
 import sys
+from guess_number import play_Number_Guessing_Game
 
 # Menu options
 menu_options = ["Quiz Game", "Hangman", "Tic-Tac-Toe", "Number Guessing Game", "Word Scramble", "Exit"]
@@ -27,7 +28,7 @@ def game_selection(op):
         case "3" | "tictactoe":
             pass
         case "4" | "numberguessinggame":
-            pass
+            play_Number_Guessing_Game()
         case "5" | "wordscramble":
             pass
         case "6" | "exit":
