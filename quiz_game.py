@@ -1,7 +1,7 @@
 import os
 import random
 
-LEADERBOARD_FILE = "S1SW\\leaderboard.txt"
+LEADERBOARD_FILE = "quiz_game_leaderboard.txt"
 
 def load_leaderboard():
     leaderboard = {}
@@ -63,7 +63,7 @@ def print_results(score, name):
         print("Sorry, you lost!")
 
 # Run the game
-def run_quiz_game(get_user_input):
+def run_quiz_game():
     name = get_user_input("What is your name? ")
     
     answers = ask_all_questions(questions, get_user_input)
@@ -74,11 +74,24 @@ def run_quiz_game(get_user_input):
         score = calculate_score(answers)
         update_leaderboard(name, score, leaderboard)
         print_results(score, name)
-
+    return game_end_options()
 # Function to simulate user input (replace with input for real play)
 def get_user_input(prompt):
     return input(prompt)
 
-# Start the game
-if __name__ == "__main__":
-    run_quiz_game(get_user_input)
+
+# Function to display game end options with input validation
+def game_end_options():
+    while True:
+        print("1) Play again")
+        print("2) Main menu")
+        try:
+            option = int(input("Enter your choice: "))
+            if option == 1:
+                return True  # Play again
+            elif option == 2:
+                return False  # Go back to menu
+            else:
+                print("Invalid option. Please enter 1 or 2.")
+        except ValueError:
+            print("Invalid input. Please enter a number (1 or 2).")
