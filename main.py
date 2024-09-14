@@ -1,5 +1,10 @@
 import sys
 from tic_tac_toe import play_tic_tac_toe, reset_game
+<<<<<<< HEAD
+=======
+from guess_number import play_Number_Guessing_Game
+from word_scramble import play_word_scumble
+>>>>>>> 1549f74537226d7116ae1bc488b251f383e90041
 
 # Menu options
 menu_options = ["Quiz Game", "Hangman", "Tic-Tac-Toe", "Number Guessing Game", "Word Scramble", "Exit"]
@@ -33,9 +38,11 @@ def game_selection(op):
             reset_game()
             return play_tic_tac_toe()
         case "4" | "numberguessinggame":
-            pass
+            current_game = "4"
+            return play_Number_Guessing_Game()
         case "5" | "wordscramble":
-            pass
+            current_game = "5"
+            return play_word_scumble()
         case "6" | "exit":
             print("Exiting the game. Goodbye!")
             sys.exit()
