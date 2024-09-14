@@ -1,7 +1,6 @@
 import os
-import random
 
-LEADERBOARD_FILE = "S1SW\\leaderboard.txt"
+LEADERBOARD_FILE = "leaderboard.txt"
 
 def load_leaderboard():
     leaderboard = {}
@@ -14,11 +13,9 @@ def load_leaderboard():
 
 def save_leaderboard(leaderboard):
     sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda item: item[1], reverse=True))
-
     with open(LEADERBOARD_FILE, "w") as file:
         for name, score in sorted_leaderboard.items():
             file.write(f"{name}:{score}\n")
-
 
 def update_leaderboard(player_name, score, leaderboard):
     if player_name in leaderboard:
@@ -26,10 +23,7 @@ def update_leaderboard(player_name, score, leaderboard):
     else:
         leaderboard[player_name] = score
     save_leaderboard(leaderboard)
-    
 
-# Define questions as a list of tuples (question, answer)
-leaderboard = load_leaderboard()
 questions = [
     ("What is the capital of France? ", "Paris"),
     ("What is the largest planet in the solar system? ", "Jupiter"),
@@ -38,47 +32,39 @@ questions = [
     ("What is the chemical symbol for water? ", "H2O")
 ]
 
-# Ask a single question
-def ask_question(question, correct_answer, user_input):
-    return (user_input == correct_answer, 10 if user_input == correct_answer else 0)
+def run_quiz_game(input_fn):
+    leaderboard = load_leaderboard()
+    player_name = input_fn("Enter your name: ")
 
-# Ask all questions
-def ask_all_questions(questions, get_user_input):
-    return [ask_question(q, a, get_user_input(q)) for q, a in questions]
+    score = 0
+    for question, answer in questions:
+        response = input_fn(question)
+        if response.lower() == answer.lower():
+            print("Correct!")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer was {answer}")
 
-# Check if the player has lost
-def check_loss(answers):
-    return len([a for a, score in answers if not a]) >= 3
+    print(f"{player_name}, you scored {score} out of {len(questions)}")
+    update_leaderboard(player_name, score, leaderboard)
 
-# Calculate total score
-def calculate_score(answers):
-    return sum([score for _, score in answers])
+    print("Leaderboard:")
+    for name, total_score in leaderboard.items():
+        print(f"{name}: {total_score}")
 
-# Print results
-def print_results(score, name):
-    print(f"\n{name}, your final score is {score} points.")
-    if score >= 30:
-        print("Congratulations, you won!")
-    else:
-        print("Sorry, you lost!")
+    return game_end_options()
 
-# Run the game
-def run_quiz_game(get_user_input):
-    name = get_user_input("What is your name? ")
-    
-    answers = ask_all_questions(questions, get_user_input)
-    
-    if check_loss(answers):
-        print(f"\nSorry, {name}, you got 3 answers wrong. Game over.")
-    else:
-        score = calculate_score(answers)
-        update_leaderboard(name, score, leaderboard)
-        print_results(score, name)
-
-# Function to simulate user input (replace with input for real play)
-def get_user_input(prompt):
-    return input(prompt)
-
-# Start the game
-if __name__ == "__main__":
-    run_quiz_game(get_user_input)
+def game_end_options():
+    while True:
+        print("1) Play again")
+        print("2) Main menu")
+        try:
+            option = int(input("Enter your choice: "))
+            if option == 1:
+                return True
+            elif option == 2:
+                return False  # Go back to menu
+            else:
+                print("Invalid option. Please enter 1 or 2.")
+        except ValueError:
+            print("Invalid input. Please enter a number (1 or 2).")

@@ -2,6 +2,8 @@ import sys
 from tic_tac_toe import play_tic_tac_toe, reset_game
 from guess_number import play_Number_Guessing_Game
 from word_scramble import play_word_scumble
+from quiz_game import run_quiz_game
+from hangMan import hangMan_game
 
 # Menu options
 menu_options = ["Quiz Game", "Hangman", "Tic-Tac-Toe", "Number Guessing Game", "Word Scramble", "Exit"]

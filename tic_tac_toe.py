@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import os
 
 # Leaderboard
 LEADERBOARD_FILE = "tic_tac_toe_leaderboard.txt"
