@@ -1,6 +1,33 @@
 import numpy as np
 import random
 
+# Leaderboard
+LEADERBOARD_FILE = "tic_tac_toe_leaderboard.txt"
+
+def load_leaderboard():
+    leaderboard = {}
+    if os.path.exists(LEADERBOARD_FILE):
+        with open(LEADERBOARD_FILE, "r") as file:
+            for line in file:
+                name, score = line.strip().split(":")
+                leaderboard[name] = int(score)
+    return leaderboard
+
+def save_leaderboard(leaderboard):
+    sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda item: item[1], reverse=True))
+
+    with open(LEADERBOARD_FILE, "w") as file:
+        for name, score in sorted_leaderboard.items():
+            file.write(f"{name}:{score}\n")
+
+
+def update_leaderboard(player_name, score, leaderboard):
+    if player_name in leaderboard:
+        leaderboard[player_name] += score
+    else:
+        leaderboard[player_name] = score
+    save_leaderboard(leaderboard)
+
 
 # Function to reset the game state
 def reset_game():

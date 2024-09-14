@@ -1,10 +1,7 @@
 import sys
 from tic_tac_toe import play_tic_tac_toe, reset_game
-<<<<<<< HEAD
-=======
 from guess_number import play_Number_Guessing_Game
 from word_scramble import play_word_scumble
->>>>>>> 1549f74537226d7116ae1bc488b251f383e90041
 
 # Menu options
 menu_options = ["Quiz Game", "Hangman", "Tic-Tac-Toe", "Number Guessing Game", "Word Scramble", "Exit"]
@@ -27,13 +24,13 @@ def display_menu():
 
 # Function to select operation based on user input
 def game_selection(op):
+    global current_game
     match op:
         case "1" | "quizgame":
             pass
         case "2" | "hangman":
             pass
         case "3" | "tictactoe":
-            global current_game
             current_game = "3"
             reset_game()
             return play_tic_tac_toe()
