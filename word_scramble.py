@@ -79,7 +79,7 @@ def play_word_scumble():
         print("Your score = 0")
         
     update_leaderboard(player_name, score, leaderboard)
-    game_end_options()
+    return game_end_options()
     
 # Function to display game end options with input validation
 def game_end_options():
