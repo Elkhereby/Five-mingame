@@ -13,9 +13,12 @@ def load_leaderboard():
                 leaderboard[name] = int(score)
     return leaderboard
 
+
 def save_leaderboard(leaderboard):
+    sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda item: item[1], reverse=True))
+
     with open(LEADERBOARD_FILE, "w") as file:
-        for name, score in leaderboard.items():
+        for name, score in sorted_leaderboard.items():
             file.write(f"{name}:{score}\n")
 
 def update_leaderboard(player_name, score, leaderboard):
@@ -76,3 +79,20 @@ def play_word_scumble():
         print("Your score = 0")
         
     update_leaderboard(player_name, score, leaderboard)
+    game_end_options()
+    
+# Function to display game end options with input validation
+def game_end_options():
+    while True:
+        print("1) Play again")
+        print("2) Main menu")
+        try:
+            option = int(input("Enter your choice: "))
+            if option == 1:
+                return True  # Play again
+            elif option == 2:
+                return False  # Go back to menu
+            else:
+                print("Invalid option. Please enter 1 or 2.")
+        except ValueError:
+            print("Invalid input. Please enter a number (1 or 2).")
