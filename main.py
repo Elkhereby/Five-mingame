@@ -1,5 +1,5 @@
 import sys
-# from tic_tac_toe import play_tic_tac_toe, reset_game
+from tic_tac_toe import play_tic_tac_toe, reset_game
 from guess_number import play_Number_Guessing_Game
 from word_scramble import play_word_scumble
 
@@ -32,8 +32,8 @@ def game_selection(op):
         case "3" | "tictactoe":
             global current_game
             current_game = "3"
-            # reset_game()
-            # return play_tic_tac_toe()
+            reset_game()
+            return play_tic_tac_toe()
         case "4" | "numberguessinggame":
             current_game = "4"
             return play_Number_Guessing_Game()
