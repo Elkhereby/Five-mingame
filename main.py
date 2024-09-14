@@ -47,7 +47,6 @@ def game_selection(op):
 
 ret = False
 while True:
-    print("ret = ",ret)
     if not ret or current_game is None:
         display_welcome_message()
         display_menu()

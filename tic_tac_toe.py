@@ -63,6 +63,7 @@ def check_game_status(xo, my_symbol):
         print("You Won") if winner == my_symbol else print("PC Won")
         return True
 
+
     # Horizontal check
     for i in range(0, 9, 3):
         if xo[i] == xo[i+1] == xo[i+2] and xo[i] in ["X", "O"]:
