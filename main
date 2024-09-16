@@ -29,7 +29,6 @@ def game_selection(op):
             current_game = "1"
             return run_quiz_game()
         case "2" | "hangman":
-            current_game = "2"
             return hangMan_game()  # Modified to call hangman game
         case "3" | "tictactoe":
             current_game = "3"
@@ -59,8 +58,4 @@ while True:
         user_input = operation.replace(" ", "").lower()
         ret = game_selection(user_input)
     else:
-        # Continue with the same game without returning to the menu
-        if current_game == "2":
-            ret = hangMan_game()  # Stay in Hangman if chosen
-        else:
-            ret = game_selection(current_game)
+        ret = game_selection(current_game)
