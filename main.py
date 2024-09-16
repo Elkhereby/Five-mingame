@@ -10,19 +10,16 @@ menu_options = ["Quiz Game", "Hangman", "Tic-Tac-Toe", "Number Guessing Game", "
 global current_game
 current_game = None
 
-
 def display_welcome_message():
     print("-" * 50)
     print("Welcome to the Arcade!".center(50))
     print("-" * 50)
-
 
 # Function to display menu options
 def display_menu():
     print("Mini-games:")
     for i in range(len(menu_options)):
         print(f"{i + 1}) {menu_options[i]}")
-
 
 # Function to select operation based on user input
 def game_selection(op):
@@ -32,8 +29,8 @@ def game_selection(op):
             current_game = "1"
             return run_quiz_game()
         case "2" | "hangman":
-            current_game="2"
-            return hangMan_game()
+            current_game = "2"
+            return hangMan_game()  # Modified to call hangman game
         case "3" | "tictactoe":
             current_game = "3"
             reset_game()
@@ -52,7 +49,7 @@ def game_selection(op):
             return False
     return False
 
-
+# Main loop to run the program
 ret = False
 while True:
     if not ret or current_game is None:
@@ -62,4 +59,8 @@ while True:
         user_input = operation.replace(" ", "").lower()
         ret = game_selection(user_input)
     else:
-        ret = game_selection(current_game)
+        # Continue with the same game without returning to the menu
+        if current_game == "2":
+            ret = hangMan_game()  # Stay in Hangman if chosen
+        else:
+            ret = game_selection(current_game)
