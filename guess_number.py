@@ -52,8 +52,12 @@ def play_Number_Guessing_Game():
     random_number = random.randint(0, 10)
     
     while attempts > 0:
-        guessed_number = int(input(f"Guess a number between 0 and 10 (You have {attempts} guesses left): "))
-
+        guessed_number= None
+        while guessed_number is None:
+            try:
+                guessed_number = int(input(f"Guess a number between 0 and 10 (You have {attempts} guesses left): "))
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
         if guessed_number == random_number:
             print("Congratulations, you guessed the correct number!")
             score = attempts
